@@ -12,5 +12,19 @@
         "api:start": "cd udagram/udagram-api && npm run dev",
         "api:deploy": "cd udagram/udagram-api && npm run deploy",
         "deploy": "npm run api:deploy && npm run frontend:deploy"
-    }
+    },
+    "name": "hosting-a-full-stack-application",
+    "description": "Hosting the Udacity Udagram Full Stack Application on AWS.",
+    "version": "1.0.0",
+    "main": "index.js",
+    "repository": {
+        "type": "git",
+        "url": "git+https://github.com/ashraf9932/Hosting-a-Full-Stack-Application.git"
+    },
+    "author": "Ashraf Sayed Fawzi <ashraf.neizk@gmail.com>",
+    "license": "ISC",
+    "bugs": {
+        "url": "https://github.com/ashraf9932/Hosting-a-Full-Stack-Application/issues"
+    },
+    "homepage": "https://github.com/ashraf9932/Hosting-a-Full-Stack-Application#readme"
 }
