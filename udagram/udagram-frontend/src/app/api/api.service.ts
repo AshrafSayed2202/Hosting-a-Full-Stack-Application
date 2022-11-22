@@ -32,26 +32,28 @@ export class ApiService {
     this.token = token;
   }
 
-  get(endpoint): Promise<any> {
+  async get(endpoint): Promise<any> {
     const url = `${API_HOST}${endpoint}`;
     const req = this.http.get(url, this.httpOptions).pipe(map(ApiService.extractData));
 
-    return req
-            .toPromise()
-            .catch((e) => {
-              ApiService.handleError(e);
-              throw e;
-            });
+    try {
+      return await req
+        .toPromise();
+    } catch (e) {
+      ApiService.handleError(e);
+      throw e;
+    }
   }
 
-  post(endpoint, data): Promise<any> {
+  async post(endpoint: string, data: { email: string; password: string; }): Promise<any> {
     const url = `${API_HOST}${endpoint}`;
-    return this.http.post<HttpEvent<any>>(url, data, this.httpOptions)
-            .toPromise()
-            .catch((e) => {
-              ApiService.handleError(e);
-              throw e;
-            });
+    try {
+      return await this.http.post<HttpEvent<any>>(url, data, this.httpOptions)
+        .toPromise();
+    } catch (e) {
+      ApiService.handleError(e);
+      throw e;
+    }
   }
 
   async upload(endpoint: string, file: File, payload: any): Promise<any> {
@@ -73,3 +75,4 @@ export class ApiService {
     });
   }
 }
+
