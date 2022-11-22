@@ -74,7 +74,14 @@ jobs:
             eb setenv AWS_PROFILE=default 
             eb setenv AWS_ACCESS_KEY_ID=AKIAZZUQPF4ORMSI64OA
             eb setenv AWS_SECRET_ACCESS_KEY=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
-            npm run deploy
+
+            cp -rf src/config www/config && cp -R .elasticbeanstalk www/.elasticbeanstalk &&
+            cp .npmrc www/.npmrc &&
+            cp package.json www/package.json && cd www && zip -r Archive.zip . && cd ..",
+
+            aws s3 cp ./www/Archive.zip $S3_BUCKET_SERVER
+            aws elasticbeanstalk create-application-version --application-name $EB_APP --version-label <<pipeline.git.revision>> --source-bundle S3Bucket="$EB_BUCKET",S3Key="Archive.zip"
+            aws elasticbeanstalk update-environment --application-name $EB_APP --environment-name $EB_ENV --version-label <<pipeline.git.revision>>
 
 workflows:
   udagram:
