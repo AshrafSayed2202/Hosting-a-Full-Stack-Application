@@ -17,10 +17,26 @@ A list of project dependencies can be found [here](docs/dependencies.md).
 Provision the necessary AWS services needed for running the application:
 
 1. In AWS, provision a publicly available RDS database running Postgres.
-1. In AWS, provision a s3 bucket for hosting the uploaded files.
-1. Export the ENV variables needed or use a package like [dotnev](https://www.npmjs.com/package/dotenv).
-1. From the root of the repo, navigate udagram-api folder `cd starter/udagram-api` to install the node_modules `npm install`. After installation is done start the api in dev mode with `npm run dev`.
-1. Without closing the terminal in step 1, navigate to the udagram-frontend `cd starter/udagram-frontend` to install the node_modules `npm install`. After installation is done start the api in dev mode with `npm run start`.
+2. In AWS, provision a s3 bucket for hosting the uploaded files.
+3. Export the ENV variables needed or use a package like [dotnev](https://www.npmjs.com/package/dotenv).
+### Create  `.env` file in `udagram/udagram-api` directory with the following vars
+```
+POSTGRES_HOST=localhost
+DB_PORT=5432
+PORT=8080
+POSTGRES_USERNAME=postgres
+POSTGRES_PASSWORD=mypassword
+POSTGRES_DB=mydatabasename
+JWT_SECRET=IreliaTop
+URL=http://localhost
+AWS_BUCKET=""
+AWS_REGION=""
+AWS_PROFILE=""
+AWS_ACCESS_KEY_ID=""
+AWS_SECRET_ACCESS_KEY=""
+```
+4. From the root of the repo, navigate udagram-api folder `cd starter/udagram-api` to install the node_modules `npm install`. After installation is done start the api in dev mode with `npm run dev`.
+5. Without closing the terminal in step 1, navigate to the udagram-frontend `cd starter/udagram-frontend` to install the node_modules `npm install`. After installation is done start the api in dev mode with `npm run start`.
 
 ## Testing
 
