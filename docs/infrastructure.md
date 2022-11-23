@@ -12,7 +12,7 @@ Database URI: `postgresql://postgres:password123@udagram.ca3gpk5m5mjg.us-east-1.
 The application server is deployed on AWS Elastic Beanstalk service. The application is build, archived and uploaded
 to and S3 bucket from where Elastic Beanstalk extracts and runs the application on an endpoint.
 
-EB URL: `http://udagram-api-dev.eba-azp325wt.us-east-1.elasticbeanstalk.com/`
+EB URL: `http://udagram-api-dev.eba-nza9hy34.us-east-1.elasticbeanstalk.com/`
 
 #### S3 Bucket
 The frontend application is deployed using AWS S3 Bucket. The bundled assets are uploaded to an S3 bucket and that

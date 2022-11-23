@@ -62,26 +62,10 @@ jobs:
           name: Deploy App
           # TODO: Install, build, deploy in both apps
           command: |
-            eb setenv POSTGRES_HOST= udagram\.ca3gpk5m5mjg\.us\-east\-1\.rds.amazonaws\.com
-            eb setenv DB_PORT=val5432ue 
-            eb setenv POSTGRES_USERNAME=postgres 
-            eb setenv POSTGRES_PASSWORD=password123 
-            eb setenv POSTGRES_DB=postgres 
-            eb setenv JWT_SECRET=IreliaTop 
-            eb setenv URL=http\:\/\/udagram\-api\-dev\.eba\-azp325wt\.us\-east\-1\.elasticbeanstalk\.com\/ 
-            eb setenv AWS_BUCKET=ashraf\-udagram
-            eb setenv AWS_REGION=us\-east\-1 
-            eb setenv AWS_PROFILE=default 
-            eb setenv AWS_ACCESS_KEY_ID=AKIAZZUQPF4ORMSI64OA
-            eb setenv AWS_SECRET_ACCESS_KEY=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
-
-            cp -rf src/config www/config && cp -R .elasticbeanstalk www/.elasticbeanstalk &&
-            cp .npmrc www/.npmrc &&
-            cp package.json www/package.json && cd www && zip -r Archive.zip . && cd ..",
-
-            aws s3 cp ./www/Archive.zip $S3_BUCKET_SERVER
-            aws elasticbeanstalk create-application-version --application-name $EB_APP --version-label <<pipeline.git.revision>> --source-bundle S3Bucket="$EB_BUCKET",S3Key="Archive.zip"
-            aws elasticbeanstalk update-environment --application-name $EB_APP --environment-name $EB_ENV --version-label <<pipeline.git.revision>>
+            npm run deploy
+            aws s3 cp ./www/Archive.zip s3://elasticbeanstalk-us-east-1-673539108637
+            aws elasticbeanstalk create-application-version --application-name udagram-api --version-label <<pipeline.git.revision>> --source-bundle S3Bucket="elasticbeanstalk-us-east-1-673539108637",S3Key="Archive.zip"
+            aws elasticbeanstalk update-environment --application-name udagram-api --environment-name udagram-api-dev --version-label <<pipeline.git.revision>>
 
 workflows:
   udagram:
